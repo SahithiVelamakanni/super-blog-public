@@ -1,48 +1,50 @@
-<%= form_for(@blog_post, html: { class: "form-horizontal", role: "form" }) do |f| %>
-  <% if @blog_post.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@blog_post.errors.count, "error") %> prohibited this blog_post from being saved:</h4>
+<!-- Add jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!-- Add Raty.js -->
+<script src="https://cdn.jsdelivr.net/npm/raty/lib/jquery.raty.min.js"></script>
+
+<!-- Your HTML code -->
+<%= form_with(model: @blog_post, local: true, multipart: true) do |form| %>
+  <% if @blog_post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blog_post.errors.count, "error") %> prohibited this blog post from being saved:</h2>
       <ul>
-      <% @blog_post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @blog_post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="form-group">
-    
-      <%= f.label :title, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_field :title, class: "form-control" %>
-      </div>
-    
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
   </div>
-  <div class="form-group">
- 
-      <%= f.label :content, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_area :content, class: "form-control" %>
-      </div>
-      <div class="col-sm-10">
-      <%= f.text_area :content, class: "form-control" %>
-      <%= f.file_field :image, class: "form-control" %>
-    </div>
-    
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
   </div>
-  <div class="form-group">
-    
-      <%= f.label :user, class: "col-sm-2 control-label" %>
-      <div class="col-sm-10">
-        <%= f.text_field :user, class: "form-control" %>
-      </div>
-    
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating %>
   </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit class: "btn btn-primary" %>
-    </div>
+  
+
+  <div class="field">
+    <%= form.label :user %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
   </div>
 <% end %>
+<%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>

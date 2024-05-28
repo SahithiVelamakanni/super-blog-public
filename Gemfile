@@ -68,3 +68,5 @@ gem 'devise'
 gem 'rubocop'
 gem 'image_processing', '~> 1.12', '>= 1.12.2'
 gem 'ransack'
+gem 'jquery-ui-rails'
+

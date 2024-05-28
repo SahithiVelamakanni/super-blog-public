@@ -24,3 +24,4 @@
   <dd><%= @blog_post.user %></dd>
 
 </dl>
+<%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-primary" %>

@@ -1,0 +1,14 @@
+<!-- app/views/blog_posts/manage_positions.html.erb -->
+<h1>Manage Blog Post Positions</h1>
+
+<%= form_with url: update_positions_blog_posts_path, method: :patch do %>
+  <ul>
+    <% @blog_posts.each do |blog_post| %>
+      <li>
+        <%= blog_post.title %>
+        <%= hidden_field_tag "positions[]", blog_post.id %>
+      </li>
+    <% end %>
+  </ul>
+  <%= submit_tag "Update Positions" %>
+<% end %>
